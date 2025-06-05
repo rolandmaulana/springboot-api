@@ -48,7 +48,7 @@ public class AuthController {
 
         Map<String, Object> response = new HashMap<>();
         if (token != null) {
-            response.put("status", 200);
+            response.put("Your status is", 200);
             response.put("Your token is", token);
             return ResponseEntity.ok(response);
         } else {
