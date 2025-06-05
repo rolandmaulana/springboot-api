@@ -22,14 +22,17 @@ public class AuthService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    public String register(String username, String password) {
+    public String register(String username, String password, String email_address) {
         if (repo.existsByUsername(username)) {
             return "User already exists";
         }
 
         User user = new User();
         user.setUsername(username);
+        user.setEmailAddress(email_address);
         user.setPasswordHash(encoder.encode(password));
+        user.setisActive(true);
+        user.setUpdatedAt(OffsetDateTime.now());
         user.setRole("USER");
         user.setCreatedAt(OffsetDateTime.now());
         repo.save(user);
@@ -43,6 +46,6 @@ public class AuthService {
             return jwtUtil.generateToken(username, user.get().getRole());
         }
 
-        return null;
+        return null; 
     }
 }
