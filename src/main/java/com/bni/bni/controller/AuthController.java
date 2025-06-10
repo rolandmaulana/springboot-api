@@ -59,7 +59,7 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/me")
+    @GetMapping("/me") 
     public ResponseEntity<Map<String, Object>> me(@RequestHeader(value = "Authorization", required = false) String authHeader) {
         Map<String, Object> response = new HashMap<>();
 
